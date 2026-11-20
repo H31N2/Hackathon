@@ -1,0 +1,24 @@
+# Kopieren nach config.toml und anpassen.
+# Der API-Schlüssel gehört NICHT hierher: Umgebungsvariable ANTHROPIC_API_KEY setzen.
+
+[claude]
+modell = "claude-opus-5-5"
+effort = "high"          # low | medium | high | xhigh | max
+max_tokens = 64000
+
+[erkennung]
+betraege = false         # Geldbeträge ebenfalls anonymisieren
+ner_modell = ""          # z. B. "de_core_news_lg" (pip install -e .[ner])
+typen_aus = []           # z. B. ["ORT"], wenn Orte im Klartext bleiben sollen
+
+[embedding]
+# EmbeddingGemma ordnet Schreibvarianten derselben Person/Firma zu.
+# "ollama": ollama pull embeddinggemma   |   "sentence-transformers": pip install -e .[embedding]
+# "aus": nur Normalisierung (Groß/klein, ä/ae, Str./Straße)
+backend = "ollama"
+modell = "embeddinggemma"
+url = "http://127.0.0.1:11434"
+schwelle = 0.9
+
+[ablage]
+ausgabe = "ausgabe"      # Ordner für bearbeitete Dokumente
